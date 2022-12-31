@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import banner from '../../../Assets/banner/5559055.jpg'
 
 const Banner = () => {
@@ -11,10 +12,10 @@ const Banner = () => {
                     </div>
                     <div data-aos="zoom-in" className='lg:w-1/2 text-start'>
                         <h1 className="text-6xl text-secondary font-bold">Let's</h1>
-                        <h1 className="text-6xl text-secondary font-bold">scheduling</h1>
-                        <h1 className="text-6xl text-primary font-bold">Easily!</h1>
-                        <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                        <button className="btn btn-primary text-white">Get Started</button>
+                        <h1 className="text-6xl text-secondary font-bold">Treat</h1>
+                        <h1 className="text-6xl text-primary font-bold">And Care your Pet!</h1>
+                        <p className="py-6">AniCare is and animal appoinment fixing website where you may fixed your appointment to expert anytime </p>
+                        <Link to={'/appoinment'} className="btn btn-primary text-white">Get Started</Link>
                     </div>
                 </div>
             </div>

@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+Project Name: Anicare
+-
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live Website Link: https://anicare.netlify.app/home
+Admin Email : <admin@gmail.com>
+AdminPassword: <12345678>
 
-## Available Scripts
+Technology Used:
+1. Framework
+    - Tailwind
+2. Libraries
+    - ReactJs
+    - Express.JS
+3. Hosting Service
+      - Firebase
+4. Database
+      - MongoDb
+5. Packages
+      - daisyui
+      - AOS
+      - Date-fns
+      - react-icons
+      - react-hot-toast
+      - react-router
+      - react-day-picker
 
-In the project directory, you can run:
 
-### `npm start`
+Project Description:
+-
+- Anicare is an pet care appoinment website where you can consult with experts.
+- It is full responsive using tailwind and routing functionality all over the website.
+- Here also used firebase authentication system for authenticate the whole site
+- Data are used to store in database mongodb and retrive in every specific pages
+- Here we can get 2 type of user, 1.customer, 2.Admin
+- Without login a user can't scedule a appoinment
+- If a user booked a timeslot then it hasbeen disable or remove from form
+- Admin has a dashboard with view appoint report and view of users
+- Admin can accept or reject appoinment
+- Admin can make another user admin
+- Admin can see his orders and also can see the details view of those orders
+- website has a blog page and  where you can see leatest blog on interesting topics.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Future Work:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Add a good dashboard home design
+- About page
+-
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
