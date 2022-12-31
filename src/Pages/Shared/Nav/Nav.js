@@ -1,11 +1,19 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { authProvider } from '../../../Context/AuthContext';
+import useAdmin from '../../../Hooks/AdminHooks';
+import useCustomer from '../../../Hooks/CustomerHooks';
 
 const Nav = () => {
 
     //use context
     const { user, logout } = useContext(authProvider)
+
+    //is admin
+    const [isAdmin] = useAdmin(user?.email)
+
+    //is customer
+    const [isCustomer] = useCustomer(user?.email)
 
     //handle logout
     const handleLogout = () => {
@@ -26,25 +34,47 @@ const Nav = () => {
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link to={'/home'}>Home</Link></li>
-                        <li><Link>About</Link></li>
-                        <li><Link>Blogs</Link></li>
+                        <li><Link to={'/about'}>About</Link></li>
+                        <li><Link to={'/about'}>Blogs</Link></li>
+                        {
+                            isCustomer &&
+                            <li><Link to={'/myAppoinment'}>My Appoinment</Link></li>
+                        }
+                        {
+                            isAdmin &&
+                            <li><Link to={'/dashHome'}>Dashboard</Link></li>
+                        }
+                        {
+                            !isAdmin &&
+                            <Link to={'/appoinment'}>Schedule</Link>
+                        }
+
                     </ul>
                 </div>
-                <Link to={'/home'} className="text-primary text-2xl normal-case font-bold">Schedulo</Link>
+                <Link to={'/home'} className="text-primary text-2xl normal-case font-bold">AniCare</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu font-semibold menu-horizontal px-1">
-                    <li><Link to={'/home'}>Home</Link></li>
-                    <li><Link>About</Link></li>
-                    <li><Link>Blogs</Link></li>
+                <ul data-aos="zoom-in" className="menu font-semibold menu-horizontal px-1">
+                    <li><NavLink className={({ isActive }) => isActive ? 'bg-transparent font-bold' : 'font-semibold'} to={'/home'}>Home</NavLink></li>
+                    <li><NavLink className={({ isActive }) => isActive ? 'bg-transparent font-bold' : 'font-semibold'} to={'/about'}>About</NavLink></li>
+                    <li><NavLink className={({ isActive }) => isActive ? 'bg-transparent font-bold' : 'font-semibold'} to={'/blogs'}>Blogs</NavLink></li>
                     {
-                        user &&
-                        <li><Link to={'/myAppoinment'}>My Appoinment</Link></li>
+                        isCustomer &&
+                        <li><NavLink className={({ isActive }) => isActive ? 'bg-transparent font-bold' : 'font-semibold'} to={'/myAppoinment'}>My Appoinment</NavLink></li>
+                    }
+                    {
+                        isAdmin &&
+                        <li><NavLink className={({ isActive }) => isActive ? 'bg-transparent font-bold' : 'font-semibold'} to={'/dashHome'}>Dashboard</NavLink></li>
+
+
                     }
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to={'/appoinment'} className="btn btn-accent mx-2 text-white rounded-full px-8">Schedule</Link>
+                {
+                    !isAdmin &&
+                    <Link to={'/appoinment'} className="btn hidden lg:flex btn-accent mx-2 text-white rounded-full px-8">Schedule</Link>
+                }
                 {
 
 

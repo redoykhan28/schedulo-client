@@ -1,15 +1,15 @@
 import React from 'react';
-import banner from '../../../Assets/banner/4584-removebg-preview.png'
+import banner from '../../../Assets/banner/5559055.jpg'
 
 const Banner = () => {
     return (
         <div>
             <div className="hero lg:mt-28">
                 <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className='lg:w-1/2'>
+                    <div data-aos="fade-down" className='lg:w-1/2'>
                         <img src={banner} alt='Banner' />
                     </div>
-                    <div className='lg:w-1/2 text-start'>
+                    <div data-aos="zoom-in" className='lg:w-1/2 text-start'>
                         <h1 className="text-6xl text-secondary font-bold">Let's</h1>
                         <h1 className="text-6xl text-secondary font-bold">scheduling</h1>
                         <h1 className="text-6xl text-primary font-bold">Easily!</h1>

@@ -5,6 +5,7 @@ import { FaGoogle } from 'react-icons/fa';
 import { authProvider } from '../../Context/AuthContext';
 import { toast } from 'react-hot-toast';
 import { GoogleAuthProvider } from 'firebase/auth';
+import { getToken } from '../../Token/Token';
 
 
 const Login = () => {
@@ -33,7 +34,7 @@ const Login = () => {
             .then(res => {
                 const user = res.user;
                 console.log(user);
-                // getToken(data.email)
+                getToken(data?.email)
                 navigate(from, { replaced: true })
                 setError(null)
                 reset()
@@ -51,14 +52,14 @@ const Login = () => {
     const provider = new GoogleAuthProvider()
 
     const handleGoogle = () => {
-
+        const role = 'customer'
         googleSignin(provider)
             .then(res => {
 
                 const user = res.user;
                 console.log(user)
-                postUser(user.displayName, user.email, user.photoURL)
-                // getToken(user.email)
+                postUser(user?.displayName, user?.email, user?.photoURL, role)
+                getToken(user?.email)
                 navigate(from, { replaced: true })
 
             })
@@ -67,17 +68,18 @@ const Login = () => {
     }
 
     // post user
-    const postUser = (name, email, image) => {
+    const postUser = (name, email, image, role) => {
 
         const currentUser = {
 
             name,
             email,
-            image
+            image,
+            role
 
         }
 
-        fetch('http://localhost:5000/users', {
+        fetch('https://schedulo-server.vercel.app/users', {
             method: "POST",
             headers: {
 

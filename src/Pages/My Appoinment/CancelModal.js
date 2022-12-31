@@ -6,8 +6,11 @@ const CancelModal = ({ deleteAppoinment, setDeleteAppoinment, message, refetch }
     //handle Delete
     const handleDelete = (booking) => {
 
-        fetch(`http://localhost:5000/cancelUserBooking/${booking?._id}`, {
+        fetch(`https://schedulo-server.vercel.app/cancelUserBooking/${booking?._id}`, {
             method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('token')}`
+            }
 
         })
             .then(res => {
@@ -20,8 +23,9 @@ const CancelModal = ({ deleteAppoinment, setDeleteAppoinment, message, refetch }
 
                     console.log(data)
                     refetch()
-                    setDeleteAppoinment(null)
                     toast.success('Booking Cancelled')
+                    setDeleteAppoinment(null)
+
 
 
                 }

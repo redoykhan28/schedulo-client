@@ -1,11 +1,14 @@
-import React, { useContext, useState } from 'react';
-import { authProvider } from '../../Context/AuthContext';
-import { DayPicker } from 'react-day-picker';
-import { format } from 'date-fns';
 import { useQuery } from '@tanstack/react-query';
+import { format } from 'date-fns';
+import React, { useContext, useState } from 'react';
+import { DayPicker } from 'react-day-picker';
 import { toast, Toaster } from 'react-hot-toast';
+import { useLoaderData } from 'react-router-dom';
+import { authProvider } from '../../Context/AuthContext';
 
-const Appoinment = () => {
+const UpdateAppoinment = () => {
+    const booking = useLoaderData()
+    console.log(booking)
 
     //use context
     const { user } = useContext(authProvider)
@@ -34,7 +37,7 @@ const Appoinment = () => {
     })
 
     //handlePost
-    const handlePost = (e) => {
+    const handleUpdate = (e) => {
         e.preventDefault()
         const form = e.target;
         const name = user?.displayName
@@ -59,8 +62,8 @@ const Appoinment = () => {
         }
 
         //post data
-        fetch('https://schedulo-server.vercel.app/booking', {
-            method: "POST",
+        fetch(`https://schedulo-server.vercel.app/updateBooking/${booking._id}`, {
+            method: "PUT",
             headers: {
 
                 "content-type": "application/json",
@@ -73,24 +76,21 @@ const Appoinment = () => {
             .then(data => {
 
                 console.log(data)
-                toast.success('Appoinment Booked!')
+                toast.success('Appoinment Updated!')
                 form.reset()
                 refetch()
             })
     }
-
-
-
     return (
         <div data-aos="fade-up" className=''>
-            <div className="card w-full lg:w-9/12 p-4 mx-auto bg-base-100 shadow-xl">
+            <div className="card w-full lg:w-9/12 p-4 mx-auto mb-10 bg-base-100 shadow-xl">
                 <div className="card-body">
                     <h1 className='text-2xl font-semibold'>Schedule an  Appoinment</h1>
                 </div>
 
                 <div className='my-4 flex flex-col-reverse lg:flex-row'>
                     <div className='lg:w-3/5 mx-auto'>
-                        <form onSubmit={handlePost} action="">
+                        <form onSubmit={handleUpdate} action="">
 
                             <div className='text-start'>
                                 <p>Username</p>
@@ -112,7 +112,7 @@ const Appoinment = () => {
                                 <div className='text-start'>
                                     <p className='mb-2'>Select Time:</p>
                                     {
-                                        time.map(t => <select key={t._id} name="time" className="select select-bordered w-full max-w-xs" required>
+                                        time.map(t => <select key={t._id} name="time" defaultValue={booking.slots} className="select select-bordered w-full max-w-xs" required>
                                             {
 
                                                 t.slots?.map((time, i) => <option value={time} key={i}>{time}</option>)
@@ -129,8 +129,8 @@ const Appoinment = () => {
                                 <div className='text-start mt-4'>
                                     <p className='mb-2'>Select Treatment:</p>
 
-                                    <select name='treatment' className="select select-bordered w-full max-w-xs" required>
-                                        <option disabled selected value="">Select Treatment</option>
+                                    <select name='treatment' className="select select-bordered w-full max-w-xs" defaultValue={booking.treatment} required>
+                                        <option disabled value="">Select Treatment</option>
                                         {
                                             services?.map(service =>
 
@@ -140,10 +140,10 @@ const Appoinment = () => {
                                 </div>
                             </div>
                             <div className='text-start mt-5'>
-                                <textarea name='note' className="textarea mb-6 w-9/12 mx-auto textarea-bordered" placeholder="Write a Note..." required></textarea>
+                                <textarea name='note' defaultValue={booking.note} className="textarea mb-6 w-9/12 mx-auto textarea-bordered" placeholder="Write a Note..." required></textarea>
 
                             </div>
-                            <button className="btn w-full btn-active bg-primary text-white border-0 rounded-3 hover:bg-accent">Booked Appoinment</button>
+                            <button className="btn w-full btn-active bg-primary text-white border-0 rounded-3 hover:bg-accent">Update Appoinment</button>
 
 
                         </form>
@@ -165,4 +165,4 @@ const Appoinment = () => {
     );
 };
 
-export default Appoinment;
+export default UpdateAppoinment;

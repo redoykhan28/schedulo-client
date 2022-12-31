@@ -18,7 +18,13 @@ const MyAppoinment = () => {
     const { data: mybooking = [], refetch, isLoading } = useQuery({
 
         queryKey: ['mybooking'],
-        queryFn: () => fetch(`http://localhost:5000/myproduct?email=${user?.email}`)
+        queryFn: () => fetch(`https://schedulo-server.vercel.app/myBooking?email=${user?.email}`, {
+
+            headers: {
+                authorization: `bearer ${localStorage.getItem('token')}`
+            }
+
+        })
             .then(res => res.json())
 
     })
@@ -40,7 +46,7 @@ const MyAppoinment = () => {
                         <thead>
                             <tr>
                                 <th>Sl</th>
-                                <th>Name</th>
+                                <th>Treatment</th>
                                 <th>Time</th>
                                 <th>Date</th>
                                 <th>Status</th>
@@ -55,17 +61,27 @@ const MyAppoinment = () => {
                                     <tr key={book._id}>
 
                                         <td>{i + 1}</td>
-                                        <td>{book?.name}</td>
-                                        <td>{book.slots}</td>
-                                        <td>{book.date}</td>
-                                        <td className='text-error'>{book.status}</td>
+                                        <td>{book?.treatment}</td>
+                                        <td>{book?.slots}</td>
+                                        <td>{book?.date}</td>
+                                        {
+                                            book?.status === 'Confirmed' ?
+                                                <td className='text-primary'>{book.status}</td>
+                                                :
+                                                <td className='text-error'>{book.status}</td>
+                                        }
 
                                         <td>
-                                            <label onClick={() => setDeleteAppoinment(book)} htmlFor="shared-modal" className="btn btn-xs bg-error text-white mx-1 cursor-pointer hover:text-red-700 border-0">Cancel</label>
+                                            {
+                                                book?.status === "Confirmed" ?
+                                                    <td>Already Confirmed</td>
+                                                    :
+                                                    <label onClick={() => setDeleteAppoinment(book)} htmlFor="shared-modal" className="btn btn-xs bg-error text-white mx-1 cursor-pointer hover:text-red-700 border-0">Cancel</label>
+                                            }
                                         </td>
 
                                         <td>
-                                            <Link className='btn btn-xs btn-secondary text-white '>Reschedule</Link>
+                                            <Link to={`/updateAppoinment/${book._id}`} className='btn btn-xs btn-secondary text-white '>Reschedule</Link>
                                         </td>
 
                                     </tr>

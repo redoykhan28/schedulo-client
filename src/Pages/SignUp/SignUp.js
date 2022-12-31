@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { toast, Toaster } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authProvider } from '../../Context/AuthContext';
+import { getToken } from '../../Token/Token';
 
 const SignUp = () => {
     //use location and navigate
@@ -23,7 +24,8 @@ const SignUp = () => {
 
     const handlesignup = (data) => {
 
-        console.log(data)
+        console.log(data.username, data.image)
+        const role = 'customer'
 
         //handle register
         signUp(data?.email, data?.password)
@@ -31,8 +33,8 @@ const SignUp = () => {
 
                 const user = res.user;
                 console.log(user)
-                handleProfile(data.username, data.image)
-                postUser(data.username, data.email, data.image)
+                handleProfile(data?.username, data?.image)
+                postUser(data.username, data.email, data.image, role)
                 navigate(from, { replaced: true })
                 reset()
                 toast.success('Successfully SignUp')
@@ -44,16 +46,17 @@ const SignUp = () => {
     }
 
     // post user
-    const postUser = (name, email, image) => {
+    const postUser = (name, email, image, role) => {
 
         const currentUser = {
 
             name,
             email,
-            image
+            image,
+            role
         }
 
-        fetch('http://localhost:5000/users', {
+        fetch('https://schedulo-server.vercel.app/users', {
             method: "POST",
             headers: {
 
@@ -64,7 +67,7 @@ const SignUp = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                // getToken(email)
+                getToken(email)
             })
 
     }
