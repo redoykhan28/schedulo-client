@@ -9,7 +9,7 @@ const Users = () => {
     const { data: allUsers, isLoading, refetch } = useQuery({
 
         queryKey: ['allUsers'],
-        queryFn: () => fetch('https://schedulo-server.vercel.app/users', {
+        queryFn: () => fetch('http://localhost:5000/users', {
             headers: {
                 authorization: `bearer ${localStorage.getItem('token')}`
             }
@@ -23,7 +23,7 @@ const Users = () => {
 
     //handle Admin
     const handleAdmin = (user) => {
-        fetch(`https://schedulo-server.vercel.app/admin/${user._id}`, {
+        fetch(`http://localhost:5000/admin/${user._id}`, {
 
             method: "PUT",
             headers: {

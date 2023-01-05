@@ -14,7 +14,7 @@ const AppoinmentDetails = () => {
 
     //update to accept
     const handleAccept = (appoinment) => {
-        fetch(`https://schedulo-server.vercel.app/acceptStatus/${appoinment._id}`, {
+        fetch(`http://localhost:5000/acceptStatus/${appoinment._id}`, {
             method: "PUT",
             headers: {
                 authorization: `bearer ${localStorage.getItem('token')}`
@@ -32,7 +32,7 @@ const AppoinmentDetails = () => {
 
     //update to canceled
     const handleCancled = (appoinment) => {
-        fetch(`https://schedulo-server.vercel.app/cancelStatus/${appoinment._id}`, {
+        fetch(`http://localhost:5000/cancelStatus/${appoinment._id}`, {
             method: "PUT",
             headers: {
                 authorization: `bearer ${localStorage.getItem('token')}`

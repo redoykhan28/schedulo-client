@@ -22,7 +22,7 @@ const UpdateAppoinment = () => {
     const { data: time = [], refetch } = useQuery({
 
         queryKey: ['time', date],
-        queryFn: () => fetch(`https://schedulo-server.vercel.app/slots?date=${date}`)
+        queryFn: () => fetch(`http://localhost:5000/slots?date=${date}`)
             .then(res => res.json())
 
     })
@@ -31,7 +31,7 @@ const UpdateAppoinment = () => {
     const { data: services = [] } = useQuery({
 
         queryKey: ['services', date],
-        queryFn: () => fetch('https://schedulo-server.vercel.app/services')
+        queryFn: () => fetch('http://localhost:5000/services')
             .then(res => res.json())
 
     })
@@ -62,7 +62,7 @@ const UpdateAppoinment = () => {
         }
 
         //post data
-        fetch(`https://schedulo-server.vercel.app/updateBooking/${booking._id}`, {
+        fetch(`http://localhost:5000/updateBooking/${booking._id}`, {
             method: "PUT",
             headers: {
 

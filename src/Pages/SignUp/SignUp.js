@@ -56,7 +56,7 @@ const SignUp = () => {
             role
         }
 
-        fetch('https://schedulo-server.vercel.app/users', {
+        fetch('http://localhost:5000/users', {
             method: "POST",
             headers: {
 

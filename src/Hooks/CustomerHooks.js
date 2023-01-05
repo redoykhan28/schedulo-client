@@ -7,7 +7,7 @@ const useCustomer = email => {
 
     useEffect(() => {
 
-        fetch(`https://schedulo-server.vercel.app/user/customer/${email}`)
+        fetch(`http://localhost:5000/user/customer/${email}`)
             .then(res => res.json())
             .then(data => {
 

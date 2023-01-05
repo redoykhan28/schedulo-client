@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaAirFreshener, FaArrowRight, FaMedkit, FaVirusSlash } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { authProvider } from '../../../Context/AuthContext';
+import useAdmin from '../../../Hooks/AdminHooks';
 
 
 const Services = () => {
+
+    //use context 
+    const { user } = useContext(authProvider)
+    const [isAdmin] = useAdmin(user?.email)
+
     return (
         <div>
             <div data-aos="zoom-in">
@@ -43,10 +50,13 @@ const Services = () => {
                     </div>
                 </div>
             </div>
-            <div className='flex justify-center my-6 items-center'>
-                <Link className='text-primary text-start font-semibold' to={'/appoinment'}>consult with doctor now</Link>
-                <FaArrowRight className='text-primary text-start font-semibold mx-2' />
-            </div>
+            {
+                !isAdmin &&
+                <div className='flex justify-center my-6 items-center'>
+                    <Link className='text-primary text-start font-semibold' to={'/appoinment'}>consult with doctor now</Link>
+                    <FaArrowRight className='text-primary text-start font-semibold mx-2' />
+                </div>
+            }
         </div>
     );
 };

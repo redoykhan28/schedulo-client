@@ -15,7 +15,7 @@ const AdminAppoinment = () => {
     const { data: adminAppoinments, isLoading } = useQuery({
 
         queryKey: ['adminAppoinments'],
-        queryFn: () => fetch('https://schedulo-server.vercel.app/allbooking', {
+        queryFn: () => fetch('http://localhost:5000/allbooking', {
             headers: {
                 authorization: `bearer ${localStorage.getItem('token')}`
             }
@@ -63,7 +63,7 @@ const AdminAppoinment = () => {
 
                                         </td>
                                         <td>{appoinment.treatment}</td>
-                                        <td>{appoinment.time}</td>
+                                        <td>{appoinment.slots}</td>
                                         <td>{appoinment.date}</td>
 
                                         <td>

@@ -6,7 +6,7 @@ const CancelModal = ({ deleteAppoinment, setDeleteAppoinment, message, refetch }
     //handle Delete
     const handleDelete = (booking) => {
 
-        fetch(`https://schedulo-server.vercel.app/cancelUserBooking/${booking?._id}`, {
+        fetch(`http://localhost:5000/cancelUserBooking/${booking?._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('token')}`

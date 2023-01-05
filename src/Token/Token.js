@@ -1,6 +1,6 @@
 export const getToken = (email) => {
 
-    fetch(`https://schedulo-server.vercel.app/jwt?email=${email}`)
+    fetch(`http://localhost:5000/jwt?email=${email}`)
         .then(res => res.json())
         .then(data => {
 

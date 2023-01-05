@@ -57,7 +57,7 @@ export const route = createBrowserRouter([
             {
                 path: '/updateAppoinment/:id',
                 element: <PrivetRoute><UpdateAppoinment></UpdateAppoinment></PrivetRoute>,
-                loader: ({ params }) => fetch(`https://schedulo-server.vercel.app/booking/${params.id}`, {
+                loader: ({ params }) => fetch(`http://localhost:5000/booking/${params.id}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('token')}`
                     }
@@ -81,7 +81,7 @@ export const route = createBrowserRouter([
             {
                 path: '/appoinmentDetails/:id',
                 element: <AdminRoute><AppoinmentDetails></AppoinmentDetails></AdminRoute>,
-                loader: ({ params }) => fetch(`https://schedulo-server.vercel.app/booking/${params.id}`, {
+                loader: ({ params }) => fetch(`http://localhost:5000/booking/${params.id}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('token')}`
                     }

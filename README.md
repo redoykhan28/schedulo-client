@@ -37,14 +37,13 @@ Project Description:
 - Admin has a dashboard with view appoint report and view of users
 - Admin can accept or reject appoinment
 - Admin can make another user admin
-- Admin can see his orders and also can see the details view of those orders
-- website has a blog page and  where you can see leatest blog on interesting topics.
+
 
 Future Work:
 
 - Add a good dashboard home design
 - About page
--
+
 
 
 
